@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JJ Sandwitch Simulator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="static/jj-icon.webp">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+<!-- CONTENT -->
+
+<body>
+
+
+    <!-- Header -->
+    <div class="w3-container w3-theme w3-padding" id="myHeader">
+        <div class="w3-center">
+            <h4>JIMMY JOHN'S</h4>
+            <h1 class="w3-xxlarge w3-animate-bottom">Sandwitch Simulator</h1>
+        </div>
+    </div>
+
+
+    <!-- Sandwich Sim -->
+    <div class="w3-center" id="sandwitch-generator">
+        <br>
+        <h2>Generate Your Sandwitch</h2>
+
+        <div id="sandwitch-frame"" style=" position: relative;">
+
+            <div id="sandwitch-spin" class="spinner off"></div>
+
+            <img id="sandwitch-img" class="off" height="150px" src="">
+
+            <h3 id="sandwitch-name" class="off"></h3>
+
+            <p id="sandwitch-enjoy" class="off">Enjoy Your Meal!</p>
+
+        </div>
+
+
+        <div class="w3-padding-32">
+            <button id="spin-button" class="w3-btn w3-xlarge w3-theme w3-hover-red w3-card-2" onclick="spinSandwitch()"
+                style="font-weight:900;">
+                SPIN
+            </button>
+        </div>
+
+    </div>
+
+
+
+    <!-- Side Sim -->
+    <br><br><br>
+    <div class="w3-center off" id="side-generator">
+        <br>
+        <h4>Spin for a chance at a side item!</h4>
+
+        <div id="side-frame" style="position: relative;">
+
+            <div id="side-spin" class="spinner off"></div>
+
+            <img id="side-img" class="off" height="150px" src="">
+
+            <h3 id="side-name" class="off"></h3>
+
+            <p id="side-note" class="off"></p>
+
+            <p id="side-no" class="off" style="font-weight: bold; width: 25%; margin: auto; color: rgb(211, 0, 0);">
+                <br>
+                Better Luck Next Time!
+            </p>
+
+        </div>
+
+
+        <div class="w3-padding-32">
+            <button id="side-spin-button" class="w3-btn w3-xlarge w3-theme w3-hover-red w3-card-2" onclick="spinSide()"
+                style="font-weight:900;">
+                SPIN
+            </button>
+        </div>
+
+    </div>
+
+
+</body>
+
+
+
+<!-- SCRIPTS -->
+<script src="static/utils.js"></script>
+
+<!-- Sandwitch data -->
+<script>
+
+    var sandwitchData = {
+        "1": {
+            "name": "The Pepe",
+            "type": "Original",
+            "tier": "A",
+            "weight": 5
+        },
+        "2": {
+            "name": "Big John",
+            "type": "Original",
+            "tier": "B",
+            "weight": 3
+        },
+        "3": {
+            "name": "Totally Tuna",
+            "type": "Original",
+            "tier": "C",
+            "weight": 1
+        },
+        "4": {
+            "name": "Turkey Tom",
+            "type": "Original",
+            "tier": "A+",
+            "weight": 7
+        },
+        "5": {
+            "name": "Vito",
+            "type": "Original",
+            "tier": "A+",
+            "weight": 7
+        },
+        "6": {
+            "name": "The Veggie",
+            "type": "Original",
+            "tier": "A",
+            "weight": 5
+        },
+        "7": {
+            "name": "Spicy East Coast Italian",
+            "type": "Favorite",
+            "tier": "S",
+            "weight": 9
+        },
+        "8": {
+            "name": "Billy Club",
+            "type": "Favorite",
+            "tier": "A",
+            "weight": 5
+        },
+        "9": {
+            "name": "Italian Night Club",
+            "type": "Favorite",
+            "tier": "A+",
+            "weight": 7
+        },
+        "10": {
+            "name": "Hunter's Club",
+            "type": "Favorite",
+            "tier": "A",
+            "weight": 5
+        },
+        "11": {
+            "name": "Country Club",
+            "type": "Favorite",
+            "tier": "A+",
+            "weight": 7
+        },
+        "12": {
+            "name": "Beach Club",
+            "type": "Favorite",
+            "tier": "S",
+            "weight": 9
+        },
+        "13": {
+            "name": "Jimmy Cubano",
+            "type": "Favorite",
+            "tier": "B",
+            "weight": 3
+        },
+        "14": {
+            "name": "Bootlegger Club",
+            "type": "Favorite",
+            "tier": "A+",
+            "weight": 7
+        },
+        "15": {
+            "name": "Club Tuna",
+            "type": "Favorite",
+            "tier": "C",
+            "weight": 1
+        },
+        "16": {
+            "name": "Club Lulu",
+            "type": "Favorite",
+            "tier": "B",
+            "weight": 3
+        },
+        "17": {
+            "name": "Ultimate Porker",
+            "type": "Favorite",
+            "tier": "B",
+            "weight": 3
+        },
+        "garg": {
+            "name": "The J.J. Gargantuan",
+            "type": "Special",
+            "tier": "NA",
+            "weight": 1
+        },
+        "blt": {
+            "name": "J.J.B.L.T",
+            "type": "Special",
+            "tier": "NA",
+            "weight": 0
+        }
+    }
+
+
+    var sideData = {
+        "none": {
+            "name": "None",
+            "type": "NA",
+            "tier": "NA",
+            "note": "Better luck next time!",
+            "weight": 93
+        },
+        "little-john": {
+            "name": "Side Sandwitch",
+            "type": "NA",
+            "tier": "NA",
+            "note": "Enjoy a Little John on the side!",
+            "weight": 2
+        },
+        "pickle": {
+            "name": "Jimmy Pickle",
+            "type": "NA",
+            "tier": "NA",
+            "note": "You look like you need a pickle!",
+            "weight": 1
+        },
+        "box-combo": {
+            "name": "Box Combo",
+            "type": "NA",
+            "tier": "NA",
+            "note": "Jackpot! It's your lucky day!",
+            "weight": 4
+        }
+    }
+
+    var sandwitchIDs = Object.keys(sandwitchData);
+    var sandwitchWeights = Object.keys(sandwitchData).map((k) => (sandwitchData[k]['weight']));
+
+    var sideIDs = Object.keys(sideData);
+    var sideWeights = Object.keys(sideData).map((k) => (sideData[k]['weight']));
+
+</script>
+
+
+<!-- Sim and animate -->
+<script>
+
+    async function spinSandwitch() {
+
+        $('#spin-button').hide();
+        $('#sandwitch-frame').css('height', '100px');
+        $('#sandwitch-spin').fadeIn();
+
+        // randomize and update content
+        var res = weightedSample(sandwitchIDs, sandwitchWeights);
+
+        $('#sandwitch-img').attr('src', `static/sandwitches/${res}.webp`)
+
+        if (sandwitchData[res]['type'] == 'Original' || sandwitchData[res]['type'] == 'Favorite') {
+            $('#sandwitch-name').html(`
+                #${res} ${sandwitchData[res]['name']}
+            `)
+        } else {
+            $('#sandwitch-name').html(`
+                ${sandwitchData[res]['name']}
+            `)
+        }
+
+        await sleep(3);
+        $('#sandwitch-spin').fadeOut();
+
+        $('#sandwitch-img').addClass('w3-animate-zoom');
+        $('#sandwitch-img').fadeIn();
+
+        await sleep(1);
+        $('#sandwitch-name').addClass('w3-animate-bottom');
+        $('#sandwitch-name').fadeIn();
+
+        await sleep(2);
+        $('#side-generator').addClass('w3-animate-zoom');
+        $('#side-generator').fadeIn();
+
+    }
+
+
+
+    async function spinSide() {
+
+        $('#side-spin-button').hide();
+        $('#side-frame').css('height', '100px');
+        $('#side-spin').fadeIn();
+
+        // randomize and update content
+        var res = weightedSample(sideIDs, sideWeights);
+
+        if (res == 'none') {
+
+            await sleep(3);
+            $('#side-spin').fadeOut();
+            $('#side-no').addClass('w3-animate-zoom');
+            $('#side-no').fadeIn();
+
+        }
+        else {
+
+            $('#side-img').attr('src', `static/sandwitches/${res}.webp`)
+
+            $('#side-name').html(`
+                ${sideData[res]['name']}
+            `)
+
+            $('#side-note').html(`
+                ${sideData[res]['note']}
+            `)
+
+            await sleep(3);
+            $('#side-spin').fadeOut();
+
+            $('#side-img').addClass('w3-animate-zoom');
+            $('#side-img').fadeIn();
+
+
+            await sleep(1);
+            $('#side-name').addClass('w3-animate-bottom');
+            $('#side-name').fadeIn();
+
+            await sleep(1);
+            $('#side-note').fadeIn();
+
+        }
+
+
+    }
+
+
+
+</script>
+
+
+
+</html>
