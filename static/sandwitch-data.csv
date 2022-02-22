@@ -1,0 +1,20 @@
+id,name,type,tier,weight
+1,The Pepe,Original,A,5
+2,Big John,Original,B,3
+3,Totally Tuna,Original,C,1
+4,Turkey Tom,Original,A+,7
+5,Vito,Original,A+,7
+6,The Veggie,Original,A,5
+7,Spicy East Coast Italian,Favorite,S,9
+8,Billy Club,Favorite,A,5
+9,Italian Night Club,Favorite,A+,7
+10,Hunter's Club,Favorite,A,5
+11,Country Club,Favorite,A+,7
+12,Beach Club,Favorite,S,9
+13,Jimmy Cubano,Favorite,B,3
+14,Bootlegger Club,Favorite,A+,7
+15,Club Tuna,Favorite,C,1
+16,Club Lulu,Favorite,B,3
+17,Ultimate Porker,Favorite,B,3
+garg,The J.J. Gargantuan,Special,NA,1
+blt,J.J.B.L.T,Special,NA,0

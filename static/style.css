@@ -1,0 +1,46 @@
+
+/* font */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Raleway", Arial, Helvetica, sans-serif
+}
+
+.mySlides {
+    display: none
+}
+
+
+/* display off */
+.off {
+  display: none;
+}
+
+
+
+
+/* loader */
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+   
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgb(221, 0, 0);
+    border-bottom-color: rgb(221, 0, 0);
+    animation: spinner .8s ease infinite;
+  }
