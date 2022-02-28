@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>JJ Sandwitch Simulator</title>
+    <title>JJ Sandwich Randomizer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="static/jj-icon.webp">
@@ -24,31 +24,31 @@
     <div class="w3-container w3-theme w3-padding" id="myHeader">
         <div class="w3-center">
             <h4>JIMMY JOHN'S</h4>
-            <h1 class="w3-xxlarge w3-animate-bottom">Sandwitch Simulator</h1>
+            <h1 class="w3-xxlarge w3-animate-bottom">Sandwich Randomizer</h1>
         </div>
     </div>
 
 
     <!-- Sandwich Sim -->
-    <div class="w3-center" id="sandwitch-generator">
+    <div class="w3-center" id="sandwich-generator">
         <br>
-        <h2>Generate Your Sandwitch</h2>
+        <h2>Generate Your Sandwich</h2>
 
-        <div id="sandwitch-frame"" style=" position: relative;">
+        <div id="sandwich-frame"" style=" position: relative;">
 
-            <div id="sandwitch-spin" class="spinner off"></div>
+            <div id="sandwich-spin" class="spinner off"></div>
 
-            <img id="sandwitch-img" class="off" height="150px" src="">
+            <img id="sandwich-img" class="off" height="150px" src="">
 
-            <h3 id="sandwitch-name" class="off"></h3>
+            <h3 id="sandwich-name" class="off"></h3>
 
-            <p id="sandwitch-enjoy" class="off">Enjoy Your Meal!</p>
+            <p id="sandwich-enjoy" class="off">Enjoy Your Meal!</p>
 
         </div>
 
 
         <div class="w3-padding-32">
-            <button id="spin-button" class="w3-btn w3-xlarge w3-theme w3-hover-red w3-card-2" onclick="spinSandwitch()"
+            <button id="spin-button" class="w3-btn w3-xlarge w3-theme w3-hover-red w3-card-2" onclick="spinSandwich()"
                 style="font-weight:900;">
                 SPIN
             </button>
@@ -100,10 +100,10 @@
 <!-- SCRIPTS -->
 <script src="static/utils.js"></script>
 
-<!-- Sandwitch data -->
+<!-- Sandwich data -->
 <script>
 
-    var sandwitchData = {
+    var sandwichData = {
         "1": {
             "name": "The Pepe",
             "type": "Original",
@@ -230,7 +230,7 @@
             "weight": 93
         },
         "little-john": {
-            "name": "Side Sandwitch",
+            "name": "Side Sandwich",
             "type": "NA",
             "tier": "NA",
             "note": "Enjoy a Little John on the side!",
@@ -241,7 +241,7 @@
             "type": "NA",
             "tier": "NA",
             "note": "You look like you need a pickle!",
-            "weight": 1
+            "weight": 2
         },
         "box-combo": {
             "name": "Box Combo",
@@ -252,8 +252,8 @@
         }
     }
 
-    var sandwitchIDs = Object.keys(sandwitchData);
-    var sandwitchWeights = Object.keys(sandwitchData).map((k) => (sandwitchData[k]['weight']));
+    var sandwichIDs = Object.keys(sandwichData);
+    var sandwichWeights = Object.keys(sandwichData).map((k) => (sandwichData[k]['weight']));
 
     var sideIDs = Object.keys(sideData);
     var sideWeights = Object.keys(sideData).map((k) => (sideData[k]['weight']));
@@ -264,36 +264,36 @@
 <!-- Sim and animate -->
 <script>
 
-    async function spinSandwitch() {
+    async function spinSandwich() {
 
         $('#spin-button').hide();
-        $('#sandwitch-frame').css('height', '100px');
-        $('#sandwitch-spin').fadeIn();
+        $('#sandwich-frame').css('height', '100px');
+        $('#sandwich-spin').fadeIn();
 
         // randomize and update content
-        var res = weightedSample(sandwitchIDs, sandwitchWeights);
+        var res = weightedSample(sandwichIDs, sandwichWeights);
 
-        $('#sandwitch-img').attr('src', `static/sandwitches/${res}.webp`)
+        $('#sandwich-img').attr('src', `static/sandwiches/${res}.webp`)
 
-        if (sandwitchData[res]['type'] == 'Original' || sandwitchData[res]['type'] == 'Favorite') {
-            $('#sandwitch-name').html(`
-                #${res} ${sandwitchData[res]['name']}
+        if (sandwichData[res]['type'] == 'Original' || sandwichData[res]['type'] == 'Favorite') {
+            $('#sandwich-name').html(`
+                #${res} ${sandwichData[res]['name']}
             `)
         } else {
-            $('#sandwitch-name').html(`
-                ${sandwitchData[res]['name']}
+            $('#sandwich-name').html(`
+                ${sandwichData[res]['name']}
             `)
         }
 
         await sleep(3);
-        $('#sandwitch-spin').fadeOut();
+        $('#sandwich-spin').fadeOut();
 
-        $('#sandwitch-img').addClass('w3-animate-zoom');
-        $('#sandwitch-img').fadeIn();
+        $('#sandwich-img').addClass('w3-animate-zoom');
+        $('#sandwich-img').fadeIn();
 
         await sleep(1);
-        $('#sandwitch-name').addClass('w3-animate-bottom');
-        $('#sandwitch-name').fadeIn();
+        $('#sandwich-name').addClass('w3-animate-bottom');
+        $('#sandwich-name').fadeIn();
 
         await sleep(2);
         $('#side-generator').addClass('w3-animate-zoom');
@@ -322,7 +322,7 @@
         }
         else {
 
-            $('#side-img').attr('src', `static/sandwitches/${res}.webp`)
+            $('#side-img').attr('src', `static/sandwiches/${res}.webp`)
 
             $('#side-name').html(`
                 ${sideData[res]['name']}
